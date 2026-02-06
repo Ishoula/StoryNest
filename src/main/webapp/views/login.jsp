@@ -158,7 +158,7 @@
             </div>
         <% } %>
 
-        <form action="LoginServlet" method="POST">
+        <form action="login" method="POST">
             <div class="form-group">
                 <label for="identity">Username or Email</label>
                 <input type="text" id="identity" name="identity" placeholder="Enter your email" required>

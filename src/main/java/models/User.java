@@ -4,18 +4,13 @@ public class User {
 
 	private long userId;
 	private String email;
-	private String password_hash;
+	private String passwordHash;
 	private String username;
 	
 	public User() {
 		
 	}
 	
-	public User(long userId, String username, String email) {
-		this.userId=userId;
-		this.email=email;
-		this.username=username;
-	}
 
 	public long getUserId() {
 		return userId;
@@ -33,12 +28,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword_hash() {
-		return password_hash;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setPassword_hash(String password_hash) {
-		this.password_hash = password_hash;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public String getUsername() {

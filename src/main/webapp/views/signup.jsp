@@ -136,7 +136,7 @@
             <p>Start your reading journey today.</p>
         </div>
 
-        <form action="RegisterUserServlet" method="POST">
+        <form action="register" method="POST">
             
             <div class="form-group">
                 <label for="username">Username</label>
