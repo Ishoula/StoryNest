@@ -11,6 +11,8 @@ public class UserLibrary {
 	private double scrollPosition;
 	private String status;
 	private Timestamp lastReadAt;
+	private String BookCover;
+	private String BookTitle;
 	
 	public UserLibrary() {}
 	
@@ -56,6 +58,26 @@ public class UserLibrary {
 	}
 	public void setLastReadAt(Timestamp lastReadAt) {
 		this.lastReadAt = lastReadAt;
+	}
+
+
+	public String getBookCover() {
+		return BookCover;
+	}
+
+
+	public void setBookCover(String bookCover) {
+		BookCover = bookCover;
+	}
+
+
+	public String getBookTitle() {
+		return BookTitle;
+	}
+
+
+	public void setBookTitle(String bookTitle) {
+		BookTitle = bookTitle;
 	}
 	
 	

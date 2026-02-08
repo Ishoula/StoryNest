@@ -1,53 +1,48 @@
 package models;
-import java.util.List;
-import java.sql.Date;
-public class Book {
-	
-	private long bookIid;
-	private String title;
-	private String description;
-	private String coverImageUrl;
-	private int pageCount;
-	private Date publishedDate;
-	
-	
-	public long getBookIid() {
-		return bookIid;
-	}
-	public void setBookIid(long bookIid) {
-		this.bookIid = bookIid;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getCoverImageUrl() {
-		return coverImageUrl;
-	}
-	public void setCoverImageUrl(String coverImageUrl) {
-		this.coverImageUrl = coverImageUrl;
-	}
-	public int getPageCount() {
-		return pageCount;
-	}
-	public void setPageCount(int pageCount) {
-		this.pageCount = pageCount;
-	}
-	public Date getPublishedDate() {
-		return publishedDate;
-	}
-	public void setPublishedDate(Date publishedDate) {
-		this.publishedDate = publishedDate;
-	}
-	
-	
-	
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class Book implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    // Database Fields
+    private int bookId;
+    private String title;
+    private int authorId;
+    private String description;
+    private String coverImageUrl;
+    private String category;
+    private LocalDateTime createdAt;
+
+    // UI-Only Field (Populated by the SQL JOIN in your DAO)
+    private String authorName;
+
+    // Default Constructor (Required for many Java frameworks)
+    public Book() {}
+
+    // Getters and Setters
+    public int getBookId() { return bookId; }
+    public void setBookId(int bookId) { this.bookId = bookId; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public int getAuthorId() { return authorId; }
+    public void setAuthorId(int authorId) { this.authorId = authorId; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getCoverImageUrl() { return coverImageUrl; }
+    public void setCoverImageUrl(String coverImageUrl) { this.coverImageUrl = coverImageUrl; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public String getAuthorName() { return authorName; }
+    public void setAuthorName(String authorName) { this.authorName = authorName; }
 }

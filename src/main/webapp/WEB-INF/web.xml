@@ -19,7 +19,16 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/views/login</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>servlets.dataServlets.HomeServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/views/home</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>servlets.authservlets.LogoutServlet</servlet-class>

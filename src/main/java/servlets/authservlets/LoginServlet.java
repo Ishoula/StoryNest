@@ -1,14 +1,11 @@
 package servlets.authservlets;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import models.User;
 import DB.DBUtil;
 import DAOImplementation.UserDAOImpl;
@@ -18,7 +15,7 @@ import ServiceImplementation.AuthServiceImpl;
 
 public class LoginServlet extends HttpServlet {
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
         String identity = request.getParameter("identity");
@@ -36,7 +33,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("currentUser", user);
                 
                 // Redirect to Home Page
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("home");
             } else {
                 request.setAttribute("error", "Invalid username/email or password.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
