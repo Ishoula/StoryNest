@@ -36,7 +36,7 @@
     <a href="home" class="logo">StoryNest</a>
     <div class="user-menu">
         <span>Welcome, <strong>${currentUser.username}</strong></span>
-        <a href="profile">My Profile</a>
+        <a href="profile">Profile</a>
         <a href="logout" style="color: #e74c3c;">Logout</a>
     </div>
 </nav>
@@ -70,7 +70,7 @@
                 <div class="book-info">
                     <h3 class="book-title">${book.title}</h3>
                     <p class="author-name">By ${book.authorName}</p>
-                    <a href="book-details?id=${book.bookId}" class="btn-read" style="background: #34495e;">View Details</a>
+                    <a href="bookDetails?id=${book.bookId}" class="btn-read" style="background: #34495e;">Start Reading</a>
                 </div>
             </div>
         </c:forEach>

@@ -6,6 +6,7 @@ public class Chapter {
 	private long bookId;
 	private int chapterSequence;
 	private String title;
+	private String content;
 	private String contentText;
 	
 	public Chapter() {}

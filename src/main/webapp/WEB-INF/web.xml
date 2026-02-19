@@ -29,6 +29,16 @@
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/views/home</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>BookDetails</servlet-name>
+    <servlet-class>servlets.dataServlets.BookDetailsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    <servlet-name>BookDetails</servlet-name>
+    <url-pattern>/views/bookDetails</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>servlets.authservlets.LogoutServlet</servlet-class>
