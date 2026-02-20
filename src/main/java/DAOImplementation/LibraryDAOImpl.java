@@ -4,11 +4,9 @@ import java.sql.*;
 import java.util.*;
 
 import DAOInterface.LibraryDAO;
-
-import jakarta.servlet.http.*;
 import models.UserLibrary;
 
-public class LibraryDAOImpl extends HttpServlet implements LibraryDAO {
+public class LibraryDAOImpl implements LibraryDAO {
 
 	
 	private final Connection con;

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Book implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     // Database Fields
     private int bookId;

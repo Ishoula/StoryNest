@@ -193,7 +193,7 @@
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#">Explore</a>
-            <a href="login.jsp" class="btn-login">Login</a>
+            <a href="./views/login.jsp" class="btn-login">Login</a>
         </div>
     </nav>
 
@@ -201,7 +201,7 @@
         <div class="hero-text">
             <h1>Your stories, exactly where you left them.</h1>
             <p>StoryNest is the world's most intuitive reading platform. Filter by genre, track your progress automatically, and dive into a library built for you.</p>
-            <a href="signup.jsp" class="cta-button">Start Reading Free</a>
+            <a href="./views/signup.jsp" class="cta-button">Start Reading Free</a>
         </div>
         <div class="hero-image">
             <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Reading on StoryNest">
