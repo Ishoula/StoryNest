@@ -278,15 +278,15 @@
 
     <div class="marquee-container">
         <div class="marquee-content">
-            <div class="quote-card">"A reader lives a thousand lives before he dies." <span>— G.R.R. Martin</span></div>
-            <div class="quote-card">"Books are a uniquely portable magic." <span>— Stephen King</span></div>
+            <div class="quote-card">“Between the pages, we find the parts of ourselves we couldn't name.” <span>— I.Shoula</span></div>
+            <div class="quote-card">"A novel is a quiet conversation between two souls who may never meet." <span>— I.Shoula</span></div>
             <div class="quote-card">"There is no friend as loyal as a book." <span>— Ernest Hemingway</span></div>
             <div class="quote-card">"Everything in the world exists to end up in a book." <span>— Stephane Mallarme</span></div>
 
             <div class="quote-card">"A reader lives a thousand lives before he dies." <span>— G.R.R. Martin</span></div>
-            <div class="quote-card">"Books are a uniquely portable magic." <span>— Stephen King</span></div>
-            <div class="quote-card">"There is no friend as loyal as a book." <span>— Ernest Hemingway</span></div>
-            <div class="quote-card">"Everything in the world exists to end up in a book." <span>— Stephane Mallarme</span></div>
+            <div class="quote-card">"Stories let us live a thousand lives without losing our own" <span>— I.Shoula</span></div>
+            <div class="quote-card">"Books don't just tell stories — they awaken them." <span>— I.Shoula</span></div>
+            <div class="quote-card">"Smart people consume content. Wise people process it.”" <span>— I.Shoula</span></div>
         </div>
     </div>
     <c:if test="${not empty userProgress}">

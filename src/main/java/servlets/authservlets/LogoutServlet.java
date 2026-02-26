@@ -1,4 +1,17 @@
 package servlets.authservlets;
 
-public class LogoutServlet {
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
+
+import java.io.IOException;
+
+public class LogoutServlet extends HttpServlet {
+
+    public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        HttpSession session=req.getSession(false);
+        if(session !=null){
+            session.invalidate();
+        }
+        req.getRequestDispatcher("/").forward(req, res);
+    }
 }

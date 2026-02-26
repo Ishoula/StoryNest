@@ -70,9 +70,10 @@
     }
 }
 
-        .book-content {
-            flex: 1;
-        }
+       .book-content {
+    flex: 1;
+    padding-left: 20px; 
+}
         .badge {
             background: var(--primary);
             color: var(--bg);
@@ -154,22 +155,28 @@
             padding: 20px 0;
         }
 
-        .hero-image {
-        flex: 1;
-        text-align: right;
-      }
+      .hero-image {
+    flex: 0 0 350px; /* Forces the image column to stay at 350px width */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+}
 
       .hero-image img {
-        max-width: 100%;
+        width: 80%; 
+        height: auto;
         border-radius: 15px;
         box-shadow: 20px 20px 0px var(--primary);
-      }
+        animation: clockSpin 10s linear infinite;
+        transform-origin: center center;
+    }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="/views/home" class="back-btn">← Back to Library</a>
+        <a href="home" class="back-btn">← Back to Library</a>
     </nav>
 
     <div class="container">
