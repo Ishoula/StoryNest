@@ -20,7 +20,6 @@
             color: var(--dark);
         }
 
-        /* Navigation */
         nav {
             padding: 20px 5%;
             background: white;
@@ -41,8 +40,6 @@
             gap: 60px;
             padding: 0 30px;
         }
-
-        /* --- Bouncing Image Logic --- */
         .book-sidebar {
             flex: 0 0 320px;
         }
@@ -66,12 +63,9 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
-        /* ---------------------------- */
-
         .book-content {
             flex: 1;
         }
-
         .badge {
             background: #eafaf1;
             color: var(--primary);
@@ -156,7 +150,7 @@
 <body>
 
     <nav>
-        <a href="${pageContext.request.contextPath}/home" class="back-btn">← Back to Library</a>
+        <a href="/views/home" class="back-btn">← Back to Library</a>
     </nav>
 
     <div class="container">

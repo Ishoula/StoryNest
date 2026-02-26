@@ -6,138 +6,169 @@
     <title>Login | StoryNest</title>
     <style>
         :root {
-            --primary: #27ae60;
-            --dark: #2c3e50;
-            --light: #f4f7f6;
-            --accent: #3498db;
+            --bg-main: #0f172a;        /* Deep Navy */
+            --bg-card: rgba(30, 41, 59, 0.7); /* Translucent Slate */
+            --primary: #22c55e;        /* Vibrant Emerald */
+            --primary-glow: rgba(34, 197, 94, 0.3);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --error-red: #ef4444;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: var(--text-main);
         }
 
+        /* Glassmorphism Card */
         .login-container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 50px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
+            text-align: center;
         }
 
         .logo-link {
             text-decoration: none;
             color: var(--primary);
             font-weight: 800;
-            font-size: 1.8rem;
-            display: block;
-            text-align: center;
+            font-size: 2.2rem;
+            letter-spacing: -1.5px;
+            display: inline-block;
             margin-bottom: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
+        .logo-link:hover {
+            transform: scale(1.05);
         }
 
         .login-header h2 {
-            color: var(--dark);
-            margin-bottom: 8px;
+            font-size: 1.75rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
         }
 
         .login-header p {
-            color: #7f8c8d;
+            color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 35px;
         }
 
-        /* Form Elements */
+        /* Inputs and Labels */
         .form-group {
-            margin-bottom: 20px;
+            text-align: left;
+            margin-bottom: 22px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box; /* Crucial for width alignment */
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 0 0 4px var(--primary-glow);
         }
 
         .options-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         .options-row a {
-            color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
         }
 
+        .options-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* The Button */
         .login-btn {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background-color: var(--primary);
-            color: white;
+            color: #064e3b; /* Dark contrast text */
             border: none;
-            border-radius: 6px;
+            border-radius: 12px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3);
         }
 
         .login-btn:hover {
-            background-color: #219150;
+            transform: translateY(-2px);
+            background-color: #4ade80;
+            box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
         }
 
         .signup-link {
-            text-align: center;
-            margin-top: 25px;
+            margin-top: 30px;
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: var(--text-muted);
         }
 
         .signup-link a {
             color: var(--primary);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
         }
 
-        /* Error Message Styling (Used for failed logins) */
+        /* Error Message Overlay */
         .error-msg {
-            background: #fdf2f2;
-            color: #e74c3c;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-red);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 25px;
             font-size: 0.85rem;
-            text-align: center;
-            border: 1px solid #fadbd8;
-            display: none; /* Show only if error exists */
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
     </style>
 </head>
@@ -145,15 +176,15 @@
 
     <div class="login-container">
         <a href="landing.jsp" class="logo-link">StoryNest</a>
-        
+
         <div class="login-header">
-            <h2>Welcome Back</h2>
-            <p>Please enter your details to sign in.</p>
+            <h2>Welcome back</h2>
+            <p>Enter your credentials to continue your journey.</p>
         </div>
 
-        <%-- This section would be toggled by your Servlet if login fails --%>
+        <%-- Dynamic Error Display --%>
         <% if (request.getAttribute("error") != null) { %>
-            <div class="error-msg" style="display: block;">
+            <div class="error-msg">
                 <%= request.getAttribute("error") %>
             </div>
         <% } %>
@@ -161,7 +192,7 @@
         <form action="login" method="POST">
             <div class="form-group">
                 <label for="identity">Username or Email</label>
-                <input type="text" id="identity" name="identity" placeholder="Enter your email" required>
+                <input type="text" id="identity" name="identity" placeholder="name@example.com" required>
             </div>
 
             <div class="form-group">
@@ -170,7 +201,9 @@
             </div>
 
             <div class="options-row">
-                <label><input type="checkbox" name="remember"> Remember me</label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" name="remember" style="width: auto;"> Remember me
+                </label>
                 <a href="#">Forgot Password?</a>
             </div>
 
@@ -178,7 +211,7 @@
         </form>
 
         <div class="signup-link">
-            Don't have an account? <a href="signup.jsp">Create one for free</a>
+            New to the nest? <a href="signup.jsp">Create an account</a>
         </div>
     </div>
 

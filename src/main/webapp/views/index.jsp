@@ -14,16 +14,32 @@
         }
 
         :root {
-            --primary: #27ae60;
-            --dark: #2c3e50;
-            --light: #f9f9f9;
-            --accent: #e67e22;
-        }
+                /* Color Palette */
+                --bg-main: #0f172a;        /* Deep Navy/Black */
+                --bg-card: #1e293b;        /* Slate Slate */
+                --primary: #22c55e;        /* Vibrant Emerald */
+                --primary-hover: #16a34a;
+                --text-main: #f8fafc;      /* White-ish */
+                --text-muted: #94a3b8;    /* Soft Gray */
+                --error: #ef4444;          /* Red for alerts */
 
-        body {
-            background-color: white;
-            color: var(--dark);
-        }
+                --dark: #0f172a;
+                --light: #f4f7f6;
+
+                /* Glassmorphism */
+                --glass: rgba(255, 255, 255, 0.03);
+                --glass-border: rgba(255, 255, 255, 0.1);
+                --blur: blur(12px);
+            }
+
+            * { box-sizing: border-box; }
+            body {
+                background-color: var(--bg-main);
+                color: var(--text-main);
+                font-family: 'Inter', system-ui, sans-serif;
+                margin: 0;
+                line-height: 1.5;
+            }
 
         /* Navbar */
         nav {
@@ -31,7 +47,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 10%;
-            background: white;
+            background: var(--light);
         }
 
         .logo {
@@ -133,6 +149,11 @@
             border-radius: 10px;
             background: white;
             transition: 0.3s;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #475569;
         }
 
         .feature-card:hover {

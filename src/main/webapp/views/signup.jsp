@@ -7,8 +7,8 @@
     <style>
         /* Shared Styles from Landing Page */
         :root {
-            --primary: #27ae60;
-            --dark: #2c3e50;
+            --primary: #22c55e;
+            --dark: #0f172a;
             --light: #f4f7f6;
             --error: #e74c3c;
         }
@@ -92,7 +92,7 @@
         }
 
         .signup-btn:hover {
-            background-color: #219150;
+            background-color: #16a34a;
         }
 
         .footer-text {
@@ -124,6 +124,18 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
+        .error-msg {
+            background: #fdf2f2;
+            color: var(--error);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            text-align: center;
+            border: 1px solid #fadbd8;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -135,6 +147,12 @@
             <h2>Create Account</h2>
             <p>Start your reading journey today.</p>
         </div>
+
+        <% if (request.getAttribute("error") != null) { %>
+            <div class="error-msg" style="display: block;">
+                <%= request.getAttribute("error") %>
+            </div>
+        <% } %>
 
         <form action="register" method="POST">
             
