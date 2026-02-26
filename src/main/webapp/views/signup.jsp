@@ -7,17 +7,17 @@
     <style>
         /* Shared Styles from Landing Page */
         :root {
-            --primary: #22c55e;
+            --primary: #daedff;
+            --bg: #0f172a;
+            --bg-main: #010d29; 
             --dark: #0f172a;
-            --light: #f4f7f6;
-            --error: #e74c3c;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background-color: var(--light);
+            background-color: var(--bg);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,7 +26,7 @@
 
         /* Signup Container */
         .signup-container {
-            background: white;
+            background: var(--bg-main);
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -40,13 +40,13 @@
         }
 
         .signup-header h2 {
-            color: var(--dark);
+            color: var(--primary);
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
         .signup-header p {
-            color: #7f8c8d;
+            color: var(--primary);
         }
 
         /* Form Styling */
@@ -58,7 +58,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--primary);
         }
 
         .form-group input {
@@ -81,7 +81,7 @@
             width: 100%;
             padding: 14px;
             background-color: var(--primary);
-            color: white;
+            color: var(--bg);
             border: none;
             border-radius: 6px;
             font-size: 1.1rem;
@@ -91,15 +91,11 @@
             margin-top: 10px;
         }
 
-        .signup-btn:hover {
-            background-color: #16a34a;
-        }
-
         .footer-text {
             text-align: center;
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: var(--primary);
         }
 
         .footer-text a {

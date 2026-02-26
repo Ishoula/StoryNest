@@ -7,10 +7,10 @@
     <title>${book.title} | StoryNest</title>
     <style>
         :root {
-            --primary: #27ae60;
-            --dark: #2c3e50;
-            --light-gray: #f8f9fa;
-            --text-muted: #7f8c8d;
+            --primary: #daedff;
+            --bg: #0f172a;
+            --bg-main: #010d29; 
+            --dark: #0f172a;
         }
 
         body {
@@ -18,12 +18,13 @@
             background-color: #fdfdfd;
             margin: 0;
             color: var(--dark);
+            background: var(--bg);
         }
 
         nav {
             padding: 20px 5%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: var(--bg);
+            box-shadow: 0 2px 10px rgba(153, 153, 153, 0.05);
         }
         .back-btn {
             text-decoration: none;
@@ -145,6 +146,17 @@
             font-style: italic;
             padding: 20px 0;
         }
+
+        .hero-image {
+        flex: 1;
+        text-align: right;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 15px;
+        box-shadow: 20px 20px 0px var(--primary);
+      }
     </style>
 </head>
 <body>
@@ -154,11 +166,9 @@
     </nav>
 
     <div class="container">
-        <div class="book-sidebar">
-            <div class="cover-wrapper">
-                <img src="${book.coverImageUrl}" alt="${book.title}" 
-                     onerror="this.src='https://via.placeholder.com/320x450?text=No+Cover'">
-            </div>
+        <div class="hero-image">
+            <img src="${book.coverImageUrl}" alt="${book.title}" 
+                onerror="this.src='https://via.placeholder.com/320x450?text=No+Cover'">
         </div>
 
         <div class="book-content">

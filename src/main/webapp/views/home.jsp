@@ -92,7 +92,7 @@
 
         .author-name {
             margin: 0 0 12px;
-            color: #64748b;
+            color: #104a81;
             font-size: 0.9rem;
         }
 
@@ -156,7 +156,7 @@
         }
 
         .marquee-book-info h4 {
-            color: #f8fafc;
+            color: var(--bg);
             margin: 15px 0 5px;
             font-size: 1rem;
             white-space: nowrap;
@@ -165,7 +165,7 @@
         }
 
         .marquee-book-info span {
-            color: #94a3b8;
+            color: #243f64;
             font-size: 0.85rem;
         }
 
@@ -173,7 +173,7 @@
             display: inline-block;
             margin-top: 10px;
             padding: 5px 15px;
-            background: var(--primary);
+            background: var(--bg);
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -219,7 +219,7 @@
             background: var(--primary);
             border-radius: 20px;
             padding: 30px;
-            color: var(--bg);
+            color: #104a81;
             font-size: 1.1rem;
             font-style: italic;
             display: flex;
@@ -232,7 +232,7 @@
             margin-top: 15px;
             font-style: normal;
             font-weight: bold;
-            color: #27ae60;
+            color: var(--bg);
             font-size: 0.9rem;
             text-transform: uppercase;
         }

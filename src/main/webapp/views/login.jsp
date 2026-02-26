@@ -6,14 +6,10 @@
     <title>Login | StoryNest</title>
     <style>
         :root {
-            --bg-main: #0f172a;        /* Deep Navy */
-            --bg-card: rgba(30, 41, 59, 0.7); /* Translucent Slate */
-            --primary: #22c55e;        /* Vibrant Emerald */
-            --primary-glow: rgba(34, 197, 94, 0.3);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --error-red: #ef4444;
+        --primary: #daedff;
+        --bg: #0f172a;
+        --bg-main: #010d29; 
+        --dark: #0f172a;
         }
 
         body {
@@ -30,7 +26,7 @@
 
         /* Glassmorphism Card */
         .login-container {
-            background: var(--bg-card);
+            background: var(--bg-main);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 50px 40px;
@@ -61,10 +57,11 @@
             font-size: 1.75rem;
             margin: 0 0 10px 0;
             font-weight: 700;
+            color: var(--primary);
         }
 
         .login-header p {
-            color: var(--text-muted);
+            color: var(--primary);
             font-size: 0.95rem;
             margin-bottom: 35px;
         }
@@ -80,21 +77,23 @@
             margin-bottom: 8px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 14px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 1rem;
-            color: white;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-sizing: border-box; /* Crucial for width alignment */
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
         }
 
         .form-group input:focus {
@@ -106,7 +105,7 @@
 
         .options-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 30px;
             font-size: 0.85rem;
@@ -128,20 +127,14 @@
             width: 100%;
             padding: 16px;
             background-color: var(--primary);
-            color: #064e3b; /* Dark contrast text */
+            color: var(--bg); /* Dark contrast text */
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            background-color: #4ade80;
-            box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.4);
+            
         }
 
         .login-btn:active {
@@ -151,7 +144,7 @@
         .signup-link {
             margin-top: 30px;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--primary);
         }
 
         .signup-link a {
@@ -201,9 +194,6 @@
             </div>
 
             <div class="options-row">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="checkbox" name="remember" style="width: auto;"> Remember me
-                </label>
                 <a href="#">Forgot Password?</a>
             </div>
 
