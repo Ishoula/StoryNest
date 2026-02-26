@@ -45,31 +45,37 @@
             flex: 0 0 320px;
         }
 
-        .cover-wrapper {
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            /* This triggers the animation */
-            animation: bounce 3s ease-in-out infinite;
-        }
+       
 
-        .cover-wrapper img {
-            width: 100%;
-            display: block;
-            transition: transform 0.3s ease;
-        }
+  .hero-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    /* Keeping your signature shadow */
+    box-shadow: 20px 20px 0px var(--primary);
+    
+    /* 'linear' makes it a constant, steady clock-like spin */
+    /* '10s' is the speed; increase for slower, decrease for faster */
+    animation: clockSpin 10s linear infinite;
+    
+    /* This ensures the rotation happens from the exact center */
+    transform-origin: center center;
+}
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+@keyframes clockSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
         .book-content {
             flex: 1;
         }
         .badge {
-            background: #eafaf1;
-            color: var(--primary);
+            background: var(--primary);
+            color: var(--bg);
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -79,22 +85,23 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 1.5rem;
             margin: 0 0 10px 0;
-            color: #1a252f;
+            color:var(--primary);
         }
 
         .author {
             font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
 
         .synopsis-box {
-            margin: 40px 0;
+            margin: 20px 0;
         }
 
         .synopsis-box h3 {
+            color: var(--primary);
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
             margin-bottom: 15px;
@@ -103,7 +110,7 @@
         .synopsis-box p {
             line-height: 1.8;
             font-size: 1.1rem;
-            color: #444;
+            color: var(--primary);
         }
 
         /* Table of Contents Styling */
@@ -129,7 +136,7 @@
             margin-bottom: 10px;
             border-radius: 8px;
             text-decoration: none;
-            color: var(--dark);
+            color: var(--primary);
             font-weight: 500;
             transition: all 0.2s;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
@@ -142,7 +149,7 @@
         }
 
         .empty-state {
-            color: #95a5a6;
+            color: #2d4d6b;
             font-style: italic;
             padding: 20px 0;
         }
