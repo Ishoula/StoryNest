@@ -48,6 +48,16 @@
     <servlet-name>BookDetails</servlet-name>
     <url-pattern>/views/bookDetails</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ReaderServlet</servlet-name>
+    <servlet-class>servlets.dataServlets.ReaderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+    <servlet-name>ReaderServlet</servlet-name>
+    <url-pattern>/views/reader</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>servlets.authservlets.LogoutServlet</servlet-class>

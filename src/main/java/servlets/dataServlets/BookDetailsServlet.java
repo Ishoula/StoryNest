@@ -13,10 +13,15 @@ import models.*;
 public class BookDetailsServlet extends HttpServlet{
 	
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("currentUser") == null) {
+			res.sendRedirect(req.getContextPath() + "/");
+			return;
+		}
 		
 		String id=req.getParameter("id");
 		if(id==null) {
-			res.sendRedirect("home");
+			res.sendRedirect(req.getContextPath() + "/views/home");
 			return;
 		}
 		
@@ -34,7 +39,7 @@ public class BookDetailsServlet extends HttpServlet{
 				req.setAttribute("chapters", chapters);
 				req.getRequestDispatcher("/views/bookDetails.jsp").forward(req, res);
 			}else {
-				res.sendRedirect("home?error=book_not_found");
+				res.sendRedirect(req.getContextPath() + "/views/home?error=book_not_found");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

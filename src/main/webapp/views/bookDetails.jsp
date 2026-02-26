@@ -176,7 +176,7 @@
 <body>
 
     <nav>
-        <a href="home" class="back-btn">← Back to Library</a>
+        <a href="${pageContext.request.contextPath}/views/home" class="back-btn">← Back to Library</a>
     </nav>
 
     <div class="container">
@@ -201,8 +201,8 @@
                 <c:choose>
                     <c:when test="${not empty chapters}">
                         <c:forEach var="chap" items="${chapters}">
-                            <a href="${pageContext.request.contextPath}/reader?chapterId=${chap.chapterId}" class="chapter-link">
-                                <span>Chapter ${chap.chapterOrder}: ${chap.title}</span>
+                            <a href="${pageContext.request.contextPath}/views/reader?bookId=${book.bookId}&order=${chap.chapterSequence}" class="chapter-link">
+                                <span>Chapter ${chap.chapterSequence}: ${chap.title}</span>
                                 <span>▶</span>
                             </a>
                         </c:forEach>
