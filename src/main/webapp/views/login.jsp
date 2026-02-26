@@ -88,18 +88,18 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s;;
+            background-color: var(--primary);
         }
         .form-group input:focus {
             outline: none;
-            border-color: var(--primary);
+            background: var(--primary);
             box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
-        }
-
+        }  
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(15, 23, 42, 0.9);
+            background:var(--primary);
             box-shadow: 0 0 0 4px var(--primary-glow);
         }
 

@@ -216,7 +216,6 @@ pageEncoding="UTF-8"%>
     <header class="hero">
       <div class="hero-text">
         <h1>Your stories, exactly where you left them.</h1>
-        wed
         <p>
           StoryNest is the world's most intuitive reading platform. Filter by
           genre, track your progress automatically, and dive into a library

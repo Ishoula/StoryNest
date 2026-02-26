@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("currentUser", user);
                 
                 // Redirect to Home Page
-                response.sendRedirect("home");
+                response.sendRedirect(request.getContextPath() + "/");
             } else {
                 request.setAttribute("error", "Invalid username/email or password.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -265,11 +265,11 @@
 <body>
 
 <nav>
-    <a href="home" class="logo">StoryNest</a>
+    <a href="${pageContext.request.contextPath}/" class="logo">StoryNest</a>
     <div class="user-menu">
         <span>Welcome, <strong>${currentUser.username}</strong></span>
-        <a href="profile">Profile</a>
-        <a href="logout" style="color: #b61503;">Logout</a>
+        <a href="${pageContext.request.contextPath}/views/profile">Profile</a>
+        <a href="${pageContext.request.contextPath}/views/logout" style="color: #b61503;">Logout</a>
     </div>
 </nav>
 
@@ -298,7 +298,7 @@
                     <div class="book-info">
                         <h3 class="book-title">${item.bookTitle}</h3>
                         <p class="author-name">Progress: ${item.scrollPosition}%</p>
-                        <a href="reader?id=${item.bookId}" class="btn-read">Resume</a>
+                        <a href="${pageContext.request.contextPath}/views/reader?id=${item.bookId}" class="btn-read">Resume</a>
                     </div>
                 </div>
             </c:forEach>
@@ -320,7 +320,7 @@
                     <div class="marquee-book-info">
                         <h4>${book.title}</h4>
                         <span>${book.authorName}</span>
-                        <a href="bookDetails?id=${book.bookId}" class="view-btn">View</a>
+                        <a href="${pageContext.request.contextPath}/views/bookDetails?id=${book.bookId}" class="view-btn">View</a>
                     </div>
                 </div>
             </c:forEach>
@@ -333,7 +333,7 @@
                     <div class="marquee-book-info">
                         <h4>${book.title}</h4>
                         <span>${book.authorName}</span>
-                        <a href="bookDetails?id=${book.bookId}" class="view-btn">View</a>
+                        <a href="${pageContext.request.contextPath}/views/bookDetails?id=${book.bookId}" class="view-btn">View</a>
                     </div>
                 </div>
             </c:forEach>

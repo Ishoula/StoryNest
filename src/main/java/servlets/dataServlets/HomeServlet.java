@@ -18,6 +18,11 @@ public class HomeServlet extends HttpServlet {
 
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		HttpSession session=req.getSession(false);
+		if(session==null || session.getAttribute("currentUser")==null) {
+			res.sendRedirect(req.getContextPath() + "/");
+			return;
+		}
 		
 		String query=req.getParameter("query");
 		String category=req.getParameter("category");
@@ -31,17 +36,13 @@ public class HomeServlet extends HttpServlet {
 			}
 			req.setAttribute("bookList", books);
 			
-			HttpSession session=req.getSession(false);
-			if(session!=null &&session.getAttribute("currentUser")!=null) {
-				User user=(User) session.getAttribute("currentUser");
-				
-				LibraryDAOImpl libraryDAO = new LibraryDAOImpl(con);
-				List<UserLibrary> progress=libraryDAO.getUserLibrary(user.getUserId());
-				req.setAttribute("userProgress", progress);
-				
-				
-				req.getRequestDispatcher("/views/home.jsp").forward(req, res);
-			}
+			User user=(User) session.getAttribute("currentUser");
+			
+			LibraryDAOImpl libraryDAO = new LibraryDAOImpl(con);
+			List<UserLibrary> progress=libraryDAO.getUserLibrary(user.getUserId());
+			req.setAttribute("userProgress", progress);
+			
+			req.getRequestDispatcher("/views/home.jsp").forward(req, res);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
