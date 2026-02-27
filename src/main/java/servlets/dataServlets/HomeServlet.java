@@ -1,13 +1,13 @@
 package servlets.dataServlets;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import DAOImplementation.BookDAOImpl;
-import DAOImplementation.LibraryDAOImpl;
-import DB.DBUtil;
+import org.hibernate.SessionFactory;
+
+import DAOImplementation.BookHibernateDAOImpl;
+import DAOImplementation.LibraryHibernateDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import models.Book;
@@ -26,8 +26,9 @@ public class HomeServlet extends HttpServlet {
 		
 		String query=req.getParameter("query");
 		String category=req.getParameter("category");
-		try(Connection con=DBUtil.getConnection()){
-			BookDAOImpl bookDAO=new BookDAOImpl(con);
+		try{
+			SessionFactory sessionFactory = Util.HibernateUtil.getSessionFactory();
+			BookHibernateDAOImpl bookDAO=new BookHibernateDAOImpl(sessionFactory);
 			List<Book> books;
 			if((query!=null && !query.isEmpty())|| (category!=null && !category.isEmpty())) {
 				books=bookDAO.searchBooks(query, category);
@@ -38,7 +39,7 @@ public class HomeServlet extends HttpServlet {
 			
 			User user=(User) session.getAttribute("currentUser");
 			
-			LibraryDAOImpl libraryDAO = new LibraryDAOImpl(con);
+			LibraryHibernateDAOImpl libraryDAO = new LibraryHibernateDAOImpl(sessionFactory);
 			List<UserLibrary> progress=libraryDAO.getUserLibrary(user.getUserId());
 			req.setAttribute("userProgress", progress);
 			

@@ -1,16 +1,16 @@
 package servlets.dataServlets;
 
-import DAOImplementation.ChapterDAOImpl;
-import DB.DBUtil;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import org.hibernate.SessionFactory;
+
+import DAOImplementation.ChapterHibernateDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Chapter;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class ReaderServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -24,8 +24,9 @@ public class ReaderServlet extends HttpServlet{
         int bookId=Integer.parseInt(bookIdParam);
         int order=Integer.parseInt(orderParam);
 
-       try(Connection con=DBUtil.getConnection()){
-           ChapterDAOImpl chapterDAO=new ChapterDAOImpl(con);
+       try{
+           SessionFactory sessionFactory = Util.HibernateUtil.getSessionFactory();
+           ChapterHibernateDAOImpl chapterDAO=new ChapterHibernateDAOImpl(sessionFactory);
            Chapter current = chapterDAO.getChapter(bookId,order);
            if(current!=null){
                boolean hasNext= chapterDAO.hasChapter(bookId,order+1);

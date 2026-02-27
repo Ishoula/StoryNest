@@ -1,14 +1,17 @@
 package servlets.dataServlets;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.*;
 
-import DAOImplementation.*;
-import DB.DBUtil;
+import org.hibernate.SessionFactory;
+
+import DAOImplementation.BookHibernateDAOImpl;
+import DAOImplementation.ChapterHibernateDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import models.*;
+import Util.HibernateUtil;
 
 public class BookDetailsServlet extends HttpServlet{
 	
@@ -26,10 +29,10 @@ public class BookDetailsServlet extends HttpServlet{
 		}
 		
 		int bookId=Integer.parseInt(id);
-		try(Connection con=DBUtil.getConnection()){
-			
-			BookDAOImpl bookDAO=new BookDAOImpl(con);
-			ChapterDAOImpl chapterDAO= new ChapterDAOImpl(con);
+		try{
+			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+			BookHibernateDAOImpl bookDAO = new BookHibernateDAOImpl(sessionFactory);
+			ChapterHibernateDAOImpl chapterDAO = new ChapterHibernateDAOImpl(sessionFactory);
 			
 			Optional<Book> book= bookDAO.getBookById(bookId);
 			

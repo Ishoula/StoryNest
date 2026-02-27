@@ -116,7 +116,7 @@
 
         /* Table of Contents Styling */
         .toc-card {
-            background: #f1f3f5;
+            background: var(--primary);
             border-radius: 12px;
             padding: 30px;
             margin-top: 30px;
@@ -133,7 +133,7 @@
             display: flex;
             justify-content: space-between;
             padding: 15px;
-            background: white;
+            background: var(--bg);
             margin-bottom: 10px;
             border-radius: 8px;
             text-decoration: none;
@@ -164,7 +164,7 @@
 }
 
       .hero-image img {
-        width: 80%; 
+        width: 60%;
         height: auto;
         border-radius: 15px;
         box-shadow: 20px 20px 0px var(--primary);

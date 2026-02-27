@@ -1,39 +1,77 @@
 package models;
 
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 
+@Entity
+@Table(name="user_library")
 public class UserLibrary {
-	
-	private long bookId;
-	private long userId;
-	private long libraryId;
+
+	@EmbeddedId
+	private UserLibraryId id;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("userId")
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("bookId")
+	@JoinColumn(name = "book_id")
+	private Book book;
+
+	@Column(name = "current_chapter_id")
 	private long currentChapterId;
+
+	@Column(name = "scroll_position")
 	private double scrollPosition;
+
+	@Column(name = "status")
 	private String status;
+
+	@Column(name = "last_read_at")
 	private Timestamp lastReadAt;
+
+	@Transient
 	private String BookCover;
+
+	@Transient
 	private String BookTitle;
 	
 	public UserLibrary() {}
 	
 	
-	public long getBookId() {
-		return bookId;
+	public UserLibraryId getId() {
+		return id;
 	}
-	public void setBookId(long bookId) {
-		this.bookId = bookId;
+
+	public void setId(UserLibraryId id) {
+		this.id = id;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 	public long getUserId() {
-		return userId;
+		return id != null ? id.getUserId() : 0;
 	}
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-	public long getLibraryId() {
-		return libraryId;
-	}
-	public void setLibraryId(long libraryId) {
-		this.libraryId = libraryId;
+
+	public long getBookId() {
+		return id != null ? id.getBookId() : 0;
 	}
 	public long getCurrentChapterId() {
 		return currentChapterId;

@@ -1,7 +1,12 @@
 package models;
 
-public class Genre {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="book_genre")
+public class Genre {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long genreId;
 	private String name;
 	

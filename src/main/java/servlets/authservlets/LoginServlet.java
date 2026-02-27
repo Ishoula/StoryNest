@@ -4,14 +4,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+
+import org.hibernate.SessionFactory;
+
 import models.User;
-import DB.DBUtil;
-import DAOImplementation.UserDAOImpl;
 import DAOInterface.UserDAO;
+import DAOImplementation.UserHibernateDAOImpl;
 import ServiceInterface.AuthService;
 import ServiceImplementation.AuthServiceImpl;
+import Util.HibernateUtil;
 
 public class LoginServlet extends HttpServlet {
 
@@ -21,8 +22,9 @@ public class LoginServlet extends HttpServlet {
         String identity = request.getParameter("identity");
         String password = request.getParameter("password");
 
-        try (Connection con = DBUtil.getConnection()) {
-            UserDAO userDAO = new UserDAOImpl(con);
+        try {
+        	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+			UserDAO userDAO = new UserHibernateDAOImpl(sessionFactory);
             AuthService authService = new AuthServiceImpl(userDAO);
 
             User user = authService.login(identity, password);
@@ -38,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error", "Invalid username/email or password.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "An internal error occurred.");
             request.getRequestDispatcher("login.jsp").forward(request, response);

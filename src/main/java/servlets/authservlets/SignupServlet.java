@@ -4,14 +4,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
-import DB.DBUtil;
-import DAOImplementation.UserDAOImpl;
+import org.hibernate.SessionFactory;
+
 import DAOInterface.UserDAO;
+import DAOImplementation.UserHibernateDAOImpl;
 import ServiceInterface.AuthService;
 import ServiceImplementation.AuthServiceImpl;
+import Util.HibernateUtil;
 
 public class SignupServlet extends HttpServlet {
     
@@ -29,8 +29,9 @@ public class SignupServlet extends HttpServlet {
             return;
         }
   
-        try (Connection con = DBUtil.getConnection()) {
-            UserDAO userDAO = new UserDAOImpl(con);
+        try {
+			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+			UserDAO userDAO = new UserHibernateDAOImpl(sessionFactory);
             AuthService authService = new AuthServiceImpl(userDAO);
 
             if (authService.registerUser(username, email, password)) {
@@ -39,7 +40,7 @@ public class SignupServlet extends HttpServlet {
                 request.setAttribute("error", "Registration failed. Email or Username might be taken.");
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Database connection error.");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
