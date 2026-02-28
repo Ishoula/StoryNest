@@ -9,7 +9,7 @@
         :root {
             --primary: #daedff;
             --bg: #0f172a;
-            --bg-main: #010d29; 
+            --bg-main: #010d29;
             --dark: #0f172a;
         }
 
@@ -45,34 +45,19 @@
             flex: 0 0 320px;
         }
 
-       
 
-  .hero-image img {
-    max-width: 100%;
-    border-radius: 15px;
-    /* Keeping your signature shadow */
-    box-shadow: 20px 20px 0px var(--primary);
-    
-    /* 'linear' makes it a constant, steady clock-like spin */
-    /* '10s' is the speed; increase for slower, decrease for faster */
-    animation: clockSpin 10s linear infinite;
-    
-    /* This ensures the rotation happens from the exact center */
-    transform-origin: center center;
+
+
+@keyframes dance {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(-5deg); }
+    50% { transform: translateY(0) rotate(5deg); }
+    75% { transform: translateY(-10px) rotate(-5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
-
-@keyframes clockSpin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
        .book-content {
     flex: 1;
-    padding-left: 20px; 
+    padding-left: 20px;
 }
         .badge {
             background: var(--primary);
@@ -168,7 +153,7 @@
         height: auto;
         border-radius: 15px;
         box-shadow: 20px 20px 0px var(--primary);
-        animation: clockSpin 10s linear infinite;
+        animation: dance 2.5s ease-in-out infinite;
         transform-origin: center center;
     }
     </style>
@@ -189,6 +174,15 @@
             <span class="badge">${book.category}</span>
             <h1>${book.title}</h1>
             <p class="author">By <strong>${book.authorName}</strong></p>
+
+            <c:if test="${not inLibrary}">
+                <form action="${pageContext.request.contextPath}/views/addToLibrary" method="post" style="margin: 10px 0 20px 0;">
+                    <input type="hidden" name="bookId" value="${book.bookId}" />
+                    <button type="submit" style="padding: 8px 16px; border-radius: 8px; border: none; background: var(--primary); color: var(--bg); font-weight: 600; cursor: pointer;">
+                        Add to Library
+                    </button>
+                </form>
+            </c:if>
 
             <div class="synopsis-box">
                 <h3>Synopsis</h3>

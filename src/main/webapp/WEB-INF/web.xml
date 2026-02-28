@@ -66,4 +66,22 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/views/logout</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddToLibraryServlet</servlet-name>
+        <servlet-class>servlets.dataServlets.AddToLibraryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToLibraryServlet</servlet-name>
+        <url-pattern>/views/addToLibrary</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LibraryServlet</servlet-name>
+        <servlet-class>servlets.dataServlets.LibraryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LibraryServlet</servlet-name>
+        <url-pattern>/views/library</url-pattern>
+    </servlet-mapping>
 </web-app>

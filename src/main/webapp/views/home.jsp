@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>StoryNest | Your Library</title>
     <style>
         :root {
@@ -260,6 +261,30 @@
             z-index: 2;
         }
 
+        .welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 auto 40px auto;  /* <-- add this */
+    text-align: center;
+    color: var(--bg);
+    max-width: fit-content;
+    animation: dance 2.5s ease-in-out infinite;
+}
+
+
+
+@keyframes dance {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(-5deg); }
+    50% { transform: translateY(0) rotate(5deg); }
+    75% { transform: translateY(-10px) rotate(-5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
     </style>
 </head>
 <body>
@@ -267,14 +292,22 @@
 <nav>
     <a href="${pageContext.request.contextPath}/" class="logo">StoryNest</a>
     <div class="user-menu">
-        <span>Welcome, <strong>${currentUser.username}</strong></span>
-        <a href="${pageContext.request.contextPath}/views/profile">Profile</a>
-        <a href="${pageContext.request.contextPath}/views/logout" style="color: #b61503;">Logout</a>
+        <a href="${pageContext.request.contextPath}/views/library"><i class="fas fa-book"></i></a>
+        <a href="${pageContext.request.contextPath}/views/profile"><i class="fas fa-user"></i></a>
+        <a href="${pageContext.request.contextPath}/views/logout" style="color: #b66e03;"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </nav>
 
 
 <div class="container">
+    <c:if test="${param.added == '1'}">
+        <div style="background: #14532d; color: #bbf7d0; padding: 10px 16px; border-radius: 8px; margin-bottom: 20px; max-width: 400px;">
+            Book added to your library.
+        </div>
+    </c:if>
+    <div class="welcome-container">
+        <p>Another day to dwell between the lines</strong></p>
+    </div>
 
     <div class="marquee-container">
         <div class="marquee-content">
@@ -293,12 +326,19 @@
         <h2 class="section-title">Continue Reading</h2>
         <div class="book-grid">
             <c:forEach var="item" items="${userProgress}">
-                <div class="book-card">
-                    <img src="${item.bookCover}" class="book-cover">
-                    <div class="book-info">
-                        <h3 class="book-title">${item.bookTitle}</h3>
-                        <p class="author-name">Progress: ${item.scrollPosition}%</p>
-                        <a href="${pageContext.request.contextPath}/views/reader?id=${item.bookId}" class="btn-read">Resume</a>
+                <div class="marquee-book-card">
+                    <div class="marquee-cover-wrapper">
+                        <img src="${item.bookCover}"
+                             alt="${item.bookTitle}"
+                             onerror="this.src='https://via.placeholder.com/200x280?text=No+Cover'">
+                    </div>
+                    <div class="marquee-book-info">
+                        <h4>${item.bookTitle}</h4>
+                        <span>Progress: ${item.scrollPosition}%</span>
+                        <a href="${pageContext.request.contextPath}/views/reader?id=${item.bookId}"
+                           class="view-btn">
+                            Resume
+                        </a>
                     </div>
                 </div>
             </c:forEach>
@@ -361,5 +401,29 @@
 
     // Change slide every 5000ms (5 seconds)
     setInterval(nextSlide, 5000);
+
+    // Typewriter effect
+    function typewriter(element, text, speed = 100) {
+        element.textContent = '';
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            }
+        }
+
+        type();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const typewriterElement = document.getElementById('typewriter');
+        if (typewriterElement) {
+            typewriter(typewriterElement, typewriterElement.textContent, 75);
+        }
+    });
+
 </script>
 </html>

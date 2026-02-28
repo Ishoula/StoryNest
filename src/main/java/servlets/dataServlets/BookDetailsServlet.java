@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import DAOImplementation.BookHibernateDAOImpl;
 import DAOImplementation.ChapterHibernateDAOImpl;
+import DAOImplementation.LibraryHibernateDAOImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import models.*;
@@ -33,6 +34,7 @@ public class BookDetailsServlet extends HttpServlet{
 			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 			BookHibernateDAOImpl bookDAO = new BookHibernateDAOImpl(sessionFactory);
 			ChapterHibernateDAOImpl chapterDAO = new ChapterHibernateDAOImpl(sessionFactory);
+			LibraryHibernateDAOImpl libraryDAO = new LibraryHibernateDAOImpl(sessionFactory);
 			
 			Optional<Book> book= bookDAO.getBookById(bookId);
 			
@@ -40,6 +42,17 @@ public class BookDetailsServlet extends HttpServlet{
 				req.setAttribute("book", book.get());
 				List<Chapter> chapters=chapterDAO.getChaptersByBookId(bookId);
 				req.setAttribute("chapters", chapters);
+				User currentUser = (User) session.getAttribute("currentUser");
+				boolean inLibrary = false;
+				if (currentUser != null) {
+					long userId = currentUser.getUserId();
+					UserLibraryId ulId = new UserLibraryId(userId, bookId);
+					try (org.hibernate.Session hibSession = sessionFactory.openSession()) {
+						UserLibrary existing = hibSession.get(UserLibrary.class, ulId);
+						inLibrary = (existing != null);
+					}
+				}
+				req.setAttribute("inLibrary", inLibrary);
 				req.getRequestDispatcher("/views/bookDetails.jsp").forward(req, res);
 			}else {
 				res.sendRedirect(req.getContextPath() + "/views/home?error=book_not_found");
