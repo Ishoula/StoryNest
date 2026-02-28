@@ -248,6 +248,16 @@
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progress-bar").style.width = scrolled + "%";
         };
+        // Save progress when the user leaves the page
+            window.addEventListener('beforeunload', function () {
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const bookId = "${chapter.book.bookId}";
+                const order = "${chapter.chapterSequence}";
+
+                // Use Beacon API to send data even if page is closing
+                const url = `${pageContext.request.contextPath}/updateProgress?bookId=${bookId}&order=${order}&pos=${scrollPercent}`;
+                navigator.sendBeacon(url);
+            });
     </script>
 </body>
 </html>

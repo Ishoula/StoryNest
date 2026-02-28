@@ -6,9 +6,7 @@ import java.util.*;
 
 import org.hibernate.SessionFactory;
 
-import DAOImplementation.BookHibernateDAOImpl;
-import DAOImplementation.ChapterHibernateDAOImpl;
-import DAOImplementation.LibraryHibernateDAOImpl;
+import DAOImplementation.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import models.*;

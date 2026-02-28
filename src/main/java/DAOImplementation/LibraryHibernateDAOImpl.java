@@ -51,31 +51,25 @@ public class LibraryHibernateDAOImpl implements LibraryDAO {
     }
 
     @Override
-    public void updateProgress(long userId, long bookId, int chapterId, int position) throws SQLException {
+    public void updateProgress(long userId, long bookId, int order, double position) throws SQLException {
         Transaction tx = null;
         try (Session session = sessionFactory.openSession()) {
             tx = session.beginTransaction();
 
             UserLibraryId id = new UserLibraryId(userId, bookId);
             UserLibrary ul = session.get(UserLibrary.class, id);
-            if (ul == null) {
-                ul = new UserLibrary();
-                ul.setId(id);
-                ul.setUser(session.get(User.class, userId));
-                ul.setBook(session.get(Book.class, (int) bookId));
+
+            if (ul != null) {
+                // We store the 'order' (sequence) so the Resume link works
+                ul.setCurrentChapterId((long) order);
+                ul.setScrollPosition(position);
+                ul.setLastReadAt(new Timestamp(System.currentTimeMillis()));
+                session.merge(ul);
             }
-
-            ul.setCurrentChapterId(chapterId);
-            ul.setScrollPosition(position);
-            ul.setLastReadAt(new Timestamp(System.currentTimeMillis()));
-
-            session.persist(ul);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw new SQLException("Failed to update reading progress", e);
+            if (tx != null) tx.rollback();
+            throw new SQLException(e);
         }
     }
 
@@ -85,35 +79,31 @@ public class LibraryHibernateDAOImpl implements LibraryDAO {
         try (Session session = sessionFactory.openSession()) {
             tx = session.beginTransaction();
 
-            UserLibraryId id = new UserLibraryId(userId, bookId);
-            UserLibrary existing = session.get(UserLibrary.class, id);
-            if (existing != null) {
-                tx.commit();
-                return;
-            }
+            UserLibraryId id = new UserLibraryId(userId, (long)bookId);
+            if (session.get(UserLibrary.class, id) != null) return;
 
+            // Fetch the first chapter sequence
             Chapter first = session.createQuery(
-                    "from Chapter c where c.book.bookId = :bookId order by c.chapterSequence asc",
-                    Chapter.class
-            ).setParameter("bookId", (long) bookId)
-             .setMaxResults(1)
-             .uniqueResult();
+                            "from Chapter c where c.book.bookId = :bookId order by c.chapterSequence asc",
+                            Chapter.class)
+                    .setParameter("bookId", (long) bookId)
+                    .setMaxResults(1)
+                    .uniqueResult();
 
             UserLibrary ul = new UserLibrary();
             ul.setId(id);
-            ul.setUser(session.get(User.class, userId));
-            ul.setBook(session.get(Book.class, (int) bookId));
-            ul.setCurrentChapterId(first != null ? first.getChapterId() : 0L);
+            ul.setUser(session.get(models.User.class, userId));
+            ul.setBook(session.get(models.Book.class, bookId));
+            // Store sequence '1' or the first available sequence
+            ul.setCurrentChapterId(first != null ? (long) first.getChapterSequence() : 1L);
             ul.setScrollPosition(0.0);
             ul.setLastReadAt(new Timestamp(System.currentTimeMillis()));
 
             session.persist(ul);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw new SQLException("Failed to add book to library", e);
+            if (tx != null) tx.rollback();
+            throw new SQLException(e);
         }
     }
 }

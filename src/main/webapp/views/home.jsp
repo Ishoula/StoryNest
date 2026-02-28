@@ -385,23 +385,6 @@
 </body>
 
 <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.quote-slide');
-
-    function nextSlide() {
-        // Remove 'active' from current slide
-        slides[currentSlide].classList.remove('active');
-
-        // Move to next index, or back to 0
-        currentSlide = (currentSlide + 1) % slides.length;
-
-        // Add 'active' to new slide
-        slides[currentSlide].classList.add('active');
-    }
-
-    // Change slide every 5000ms (5 seconds)
-    setInterval(nextSlide, 5000);
-
     // Typewriter effect
     function typewriter(element, text, speed = 100) {
         element.textContent = '';
