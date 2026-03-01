@@ -155,10 +155,10 @@
 
         /* Error Message Overlay */
         .error-msg {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error-red);
+            background: #491818;
+            color: var(--primary);
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 6px;
             margin-bottom: 25px;
             font-size: 0.85rem;
             border: 1px solid rgba(239, 68, 68, 0.2);
@@ -178,7 +178,7 @@
         <%-- Dynamic Error Display --%>
         <% if (request.getAttribute("error") != null) { %>
             <div class="error-msg">
-                <%= request.getAttribute("error") %>
+               🙃 <%= request.getAttribute("error") %>
             </div>
         <% } %>
 

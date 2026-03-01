@@ -68,6 +68,7 @@
             border-radius: 6px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            background: var(--primary);
         }
 
         .form-group input:focus {
@@ -122,14 +123,13 @@
         }
 
         .error-msg {
-            background: #fdf2f2;
-            color: var(--error);
+            background: #361d1d;
+            color: var(--primary);
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 20px;
             font-size: 0.85rem;
             text-align: center;
-            border: 1px solid #fadbd8;
             display: none;
         }
     </style>
